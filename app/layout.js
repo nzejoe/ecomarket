@@ -17,6 +17,7 @@ import "swiper/css/pagination";
 import store from "@/common/store/reducer";
 import Navbar from "@/common/components/reuseable/Navbar";
 import Footer from "@/common/components/reuseable/Footer";
+import OurServices from "@/common/components/reuseable/OurServices";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -36,6 +37,7 @@ export default function RootLayout({ children }) {
                     <Provider store={store}>
                         <Navbar />
                         <div className="pt-[70px]">{children}</div>
+                        <OurServices />
                         <Footer />
                     </Provider>
                 </QueryClientProvider>

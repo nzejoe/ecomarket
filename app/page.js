@@ -1,5 +1,5 @@
 import HomeHero from "@/common/components/home/HomeHero";
-import PromoOffer from "@/common/components/home/PromoOffer";
+import PromoOffer from "@/common/components/reuseable/PromoOffer";
 import TopCategories from "@/common/components/home/TopCategories";
 import TopSelling from "@/common/components/home/TopSelling";
 
