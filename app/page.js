@@ -1,9 +1,9 @@
-import Image from "next/image";
+import HomeHero from "@/common/components/home/HomeHero";
 
 export default function Home() {
     return (
         <main className="">
-            <h5 className="text-primary">Welcome to EcoMarket</h5>
+            <HomeHero />
         </main>
     );
 }

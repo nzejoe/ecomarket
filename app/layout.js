@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
                 <QueryClientProvider client={queryClient}>
                     <Provider store={store}>
                         <Navbar />
-                        {children}
+                        <div className="pt-[70px]">{children}</div>
                         <Footer />
                     </Provider>
                 </QueryClientProvider>
