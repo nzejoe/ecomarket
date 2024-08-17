@@ -197,9 +197,9 @@ const ProductDetailPage = ({ params }) => {
                 {loading && <LoadingSpinner isLoading={true} color="text-primary" />}
                 {product && !loading && (
                     <div>
-                        <div className={`border-b`}>
+                        <div className={`border-b pb-20 xl:flex items-center space-x-10`}>
                             {/* img viewer */}
-                            <div className={`flex justify-between align-center`}>
+                            <div className={`flex items-center`}>
                                 {/* product gallery thumbnail */}
                                 <div className="gallery__thumbs">
                                     {product.gallery.map((img, index) => {
@@ -306,11 +306,12 @@ const ProductDetailPage = ({ params }) => {
                                         )}
 
                                         {/* quantity */}
-                                        <div className={``}>
-                                            <h5>Quantity</h5>
-                                            <div className="flex items-center space-x-2 border rounded-xl">
+                                        <div className={`mb-5`}>
+                                            <h5 className="mb-1">Quantity</h5>
+                                            <div className="w-max flex items-center space-x-2 border rounded-xl ">
                                                 <button
-                                                    className={``}
+                                                    type="button"
+                                                    className={`px-3 py-1`}
                                                     onClick={() => handleQuantityChange(quantity - 1)}
                                                 >
                                                     {" "}
@@ -320,20 +321,26 @@ const ProductDetailPage = ({ params }) => {
                                                     type="text"
                                                     value={Number.isNaN(quantity) ? 1 : quantity} // if user clear quatity return 1 instead
                                                     onChange={(e) => handleQuantityChange(e.target.value)}
+                                                    className="eco-input !w-[50px] border text-center"
                                                 />
                                                 <button
-                                                    className={``}
+                                                    type="button"
+                                                    className={`px-3 py-1`}
                                                     onClick={() => handleQuantityChange(quantity + 1)}
                                                 >
                                                     {" "}
-                                                    <FiPlus />{" "}
+                                                    <FiPlus className="font-bold" />{" "}
                                                 </button>
                                             </div>
                                         </div>
                                         {/* submit button */}
                                         <div>
-                                            <button className="light__btn_big" type="submit" onClick={addItemHandler}>
-                                                add to cart
+                                            <button
+                                                className="button-lg button-outline bg-primary text-white"
+                                                type="submit"
+                                                onClick={addItemHandler}
+                                            >
+                                                Add to Cart
                                             </button>
                                         </div>
                                     </form>
