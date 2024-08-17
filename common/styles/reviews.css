@@ -1,6 +1,7 @@
 .review__form {
     width: 100%;
     margin-bottom: 2rem;
+    max-width: 50rem;
 }
 
 .review__form h3 {
@@ -20,7 +21,6 @@
     border-bottom: 1px solid var(--dark-trans-2);
     margin: 1rem 0;
     padding: 0.5rem 1rem;
-    font-size: 1.5rem;
 }
 
 .review__form form input:focus {
@@ -29,11 +29,8 @@
 
 .review__form form textarea {
     width: 100%;
-    min-width: 32rem;
-    max-width: 50rem;
-    height: 20rem;
+    height: 15rem;
     outline: none;
-    font-size: 1.5rem;
     border: 1px solid var(--dark-trans-2);
     border-radius: 1rem;
     padding: 0.5rem 1rem;

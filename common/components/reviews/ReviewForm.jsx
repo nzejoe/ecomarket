@@ -53,10 +53,10 @@ const ReviewForm = ({ productId, handlePageRefresh }) => {
     };
 
     return (
-        <div className={`review__form`}>
+        <div className={`review__form `}>
             <h3>How do you rate this product?</h3>
             <form onSubmit={handleSubmit}>
-                {formhasError && <p>Please rate this product.</p>}
+                {formhasError && <p className="text-error">Please rate this product.</p>}
                 <RatingStar onChange={handleRateChange} rating={rating} />
                 <input type="text" placeholder="Enter subject" ref={subjectRef} />
                 <textarea name="" id="" placeholder="Write a short note about this product." ref={reviewRef}></textarea>

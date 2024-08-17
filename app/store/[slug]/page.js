@@ -239,7 +239,7 @@ const ProductDetailPage = ({ params }) => {
                                 {/* ADD TO CART FORM */}
                                 <div className={`capitalize`}>
                                     <form>
-                                        {formHasError && <h5 className="text-xs h-5">{errorMsg}</h5>}
+                                        {formHasError && <h5 className="text-xs h-5 text-error">{errorMsg}</h5>}
                                         {colors.length > 0 && (
                                             <div className="mb-5">
                                                 <h5 className={`mb-1`}>colors</h5>

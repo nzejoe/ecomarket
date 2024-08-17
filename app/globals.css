@@ -4,6 +4,25 @@
 
 :root {
     @apply bg-white text-secondary;
+    --primary-color: #56acbf;
+    --primary-color-dark: #3a7f8c;
+    --primary-color-light: #6c91c2;
+    --primary-color-light-2: #6c91c21a;
+    --primary-color-light-3: #6c91c21e;
+    --link-color: #56acbf;
+    --dark-color: rgba(0, 0, 0, 0.822);
+    --dark-color-2: rgba(0, 0, 0, 0.705);
+    --dark-color-3: rgba(0, 0, 0, 0.726);
+    --dark-trans: rgba(0, 0, 0, 0.404);
+    --dark-trans-2: rgba(0, 0, 0, 0.322);
+    --dark-trans-3: rgba(0, 0, 0, 0.178);
+    --dark-trans-4: rgba(0, 0, 0, 0.123);
+    --color-gray: rgb(224, 224, 224);
+    --color-gray-dark: rgb(80, 80, 80);
+    --light-color-trans: rgba(255, 255, 255, 0.425);
+    --light-shadow: 0 0 1px rgba(0, 0, 0, 0.795);
+    --light-shadow-1: 0 0 10px rgba(0, 0, 0, 0.212);
+    --light-shadow-2: 0 0 10px var(--primary-color-light);
 }
 
 @layer utilities {
