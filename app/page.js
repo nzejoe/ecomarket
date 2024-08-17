@@ -1,4 +1,5 @@
 import HomeHero from "@/common/components/home/HomeHero";
+import PromoOffer from "@/common/components/home/PromoOffer";
 import TopCategories from "@/common/components/home/TopCategories";
 import TopSelling from "@/common/components/home/TopSelling";
 
@@ -8,6 +9,7 @@ export default function Home() {
             <HomeHero />
             <TopCategories />
             <TopSelling />
+            <PromoOffer />
         </main>
     );
 }
