@@ -8,6 +8,12 @@ import { Provider } from "react-redux";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+// swiperjs
+import "swiper/css";
+import "swiper/css/grid";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
 import store from "@/common/store/reducer";
 import Navbar from "@/common/components/reuseable/Navbar";
 import Footer from "@/common/components/reuseable/Footer";
