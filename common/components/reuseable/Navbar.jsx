@@ -110,7 +110,7 @@ const Navbar = () => {
                                     {authUser ? (
                                         <div className={``}>
                                             <Link
-                                                href="/accounts/password_change/"
+                                                href="/auth/password_change"
                                                 className="block  mb-3 xl:hover:bg-primary xl:hover:text-white xl:py-2 xl:mb-0"
                                                 onClick={() => setToggle(false)}
                                             >
@@ -128,14 +128,14 @@ const Navbar = () => {
                                     ) : (
                                         <div className={``}>
                                             <Link
-                                                href="accounts/login/"
+                                                href="/auth/login"
                                                 className="block xl:hover:bg-primary xl:hover:text-white xl:py-2"
                                                 onClick={() => setToggle(false)}
                                             >
                                                 log in
                                             </Link>{" "}
                                             <Link
-                                                href="accounts/register/"
+                                                href="/auth/signup"
                                                 className="block xl:hover:bg-primary xl:hover:text-white xl:py-2"
                                                 onClick={() => setToggle(false)}
                                             >
