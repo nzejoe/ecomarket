@@ -21,7 +21,7 @@ const ProductDetailPage = ({ params }) => {
     const { token, authUser } = useSelector((state) => state.users);
     const [product, setProduct] = useState(null);
     const [defaultImage, setDefaultImage] = useState(null);
-    const [isPurchased, setIsPurchased] = useState(false);
+    const [isPurchased, setIsPurchased] = useState(true);
     const [reviews, setReview] = useState(null);
     const [loading, setLoading] = useState(true);
     const [colors, setColors] = useState([]);
@@ -66,7 +66,7 @@ const ProductDetailPage = ({ params }) => {
                 if (response.status === 200) {
                     const data = response.data;
                     setProduct(data.product);
-                    setIsPurchased(data.is_purchased);
+                    // setIsPurchased(data.is_purchased);
                     setAlreadyReviewed(data.already_reviewed);
                     setLoading(false);
                 }
@@ -349,25 +349,34 @@ const ProductDetailPage = ({ params }) => {
                         </div>
 
                         {/* PRODUCT TAB CONTROLS */}
-                        <div className={``}>
-                            <div className={` ${toggle === 1 ? ` ` : ""}`} onClick={() => handleTabToggle(1)}>
-                                <h2>description</h2>
-                            </div>
-                            <div className={` ${toggle === 2 ? `` : ""}`} onClick={() => handleTabToggle(2)}>
-                                <h2>reviews</h2>
-                            </div>
+                        <div className={`capitalize flex space-x-2 py-5 font-medium text-xl`}>
+                            <button
+                                className={`border-b-[3px] hover:border-primary py-2 px-3 capitalize ${
+                                    toggle === 1 ? `border-primary` : "border-transparent"
+                                }`}
+                                onClick={() => handleTabToggle(1)}
+                            >
+                                description
+                            </button>
+                            <button
+                                className={`border-b-[3px] hover:border-primary py-2 px-3 capitalize ${
+                                    toggle === 2 ? `border-primary` : "border-transparent"
+                                }`}
+                                onClick={() => handleTabToggle(2)}
+                            >
+                                reviews
+                            </button>
                         </div>
                         {/* TAB CONTENTs */}
                         {/* Description */}
-                        <div className={`${toggle === 1 ? `` : ""}`}>
+                        <div className={`${toggle === 1 ? `` : "hidden"}`}>
                             <p>{product && product.description}</p>
                         </div>
                         {/* REVIEW CONTAINER */}
-                        <div className={`${toggle === 2 ? `` : ""}`}>
+                        <div className={`${toggle === 2 ? `` : "hidden"}`}>
                             {/* review form  */}
                             {!alreadyReviewed && isPurchased && (
-                                // <ReviewForm productId={product.id} handlePageRefresh={handlePageRefresh} />
-                                <div>review form</div>
+                                <ReviewForm productId={product.id} handlePageRefresh={handlePageRefresh} />
                             )}
                             {/* end of review form */}
                             {/* REVIEWS */}
