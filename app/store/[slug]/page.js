@@ -66,7 +66,7 @@ const ProductDetailPage = ({ params }) => {
                 if (response.status === 200) {
                     const data = response.data;
                     setProduct(data.product);
-                    // setIsPurchased(data.is_purchased);
+                    setIsPurchased(data.is_purchased);
                     setAlreadyReviewed(data.already_reviewed);
                     setLoading(false);
                 }
