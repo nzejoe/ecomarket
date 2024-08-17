@@ -99,7 +99,11 @@ const LatestProducts = () => {
                                             <LoadingSkeleton />
                                         </div>
                                     ) : (
-                                        <div className="h-[15rem] flex flex-col justify-start  rounded-xv overflow-hidden border border-primary/20 xl:h-[15rem]">
+                                        <Link
+                                            href={`/store/${product.slug}`}
+                                            passHref={true}
+                                            className="h-[15rem] flex flex-col justify-start  rounded-xv overflow-hidden border border-primary/20 xl:h-[15rem]"
+                                        >
                                             <div className={"h-[60%] w-full relative mb-2"}>
                                                 <img
                                                     src={product.image}
@@ -121,7 +125,7 @@ const LatestProducts = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </Link>
                                     )}
                                 </Fragment>
                             ))}
