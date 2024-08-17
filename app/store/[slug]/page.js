@@ -220,7 +220,7 @@ const ProductDetailPage = ({ params }) => {
                                 </div>
                             </div>
                             <div>
-                                <div className={``}>
+                                <div className={`mb-5`}>
                                     <h5 className="text-xl font-medium mb-1">{product.product_name}</h5>
                                     {brand && <p className="text-xs text-black/75 mb-2">{brand}</p>}
                                     <p className={`text-primary font-medium text-lg mb-2`}>
@@ -233,85 +233,101 @@ const ProductDetailPage = ({ params }) => {
                                 </div>
 
                                 {/* ADD TO CART FORM */}
-                                <div className={``}>
+                                <div className={`capitalize`}>
                                     <form>
-                                        {formHasError && <h5>{errorMsg}</h5>}
+                                        {formHasError && <h5 className="text-xs h-5">{errorMsg}</h5>}
                                         {colors.length > 0 && (
-                                            <div>
-                                                <h5 className={``}>colors</h5>
-                                                {colors.map((color) => {
-                                                    return (
-                                                        <div className={``} key={product.id + color}>
-                                                            <label
-                                                                htmlFor={color}
-                                                                className={`${selectedColor === color ? "" : ""}`}
-                                                            >
-                                                                {color}
-                                                            </label>
-                                                            <input
-                                                                type="radio"
-                                                                name="color"
-                                                                id={color}
-                                                                value={color}
-                                                                required={colors && true}
-                                                                checked={color === selectedColor}
-                                                                onChange={handleColorChange}
-                                                            />
-                                                        </div>
-                                                    );
-                                                })}
+                                            <div className="mb-5">
+                                                <h5 className={`mb-1`}>colors</h5>
+                                                <div className="flex space-x-1">
+                                                    {colors.map((color) => {
+                                                        return (
+                                                            <div className={`inline-block`} key={product.id + color}>
+                                                                <label
+                                                                    htmlFor={color}
+                                                                    className={`text-white text-sm p-1 px-2 ${
+                                                                        selectedColor === color
+                                                                            ? "bg-black"
+                                                                            : "bg-black/50"
+                                                                    }`}
+                                                                >
+                                                                    {color}
+                                                                </label>
+                                                                <input
+                                                                    type="radio"
+                                                                    name="color"
+                                                                    id={color}
+                                                                    value={color}
+                                                                    required={colors && true}
+                                                                    checked={color === selectedColor}
+                                                                    onChange={handleColorChange}
+                                                                    className="hidden"
+                                                                />
+                                                            </div>
+                                                        );
+                                                    })}
+                                                </div>
                                             </div>
                                         )}
 
                                         {/* product variation selector */}
                                         {sizes.length > 0 && (
-                                            <div>
-                                                <h5 className={``}>sizes</h5>
-                                                {sizes.map((size) => {
-                                                    return (
-                                                        <div className={``} key={product.id + size}>
-                                                            <label
-                                                                htmlFor={size}
-                                                                className={`${
-                                                                    selectedSize === size
-                                                                        ? "bg-primary-dark text-white"
-                                                                        : ""
-                                                                }`}
-                                                            >
-                                                                {size}
-                                                            </label>
-                                                            <input
-                                                                type="radio"
-                                                                name="size"
-                                                                id={size}
-                                                                value={size}
-                                                                required={sizes && true}
-                                                                checked={size === selectedSize}
-                                                                onChange={handleSizeChange}
-                                                            />
-                                                        </div>
-                                                    );
-                                                })}
+                                            <div className="mb-5">
+                                                <h5 className={`mb-1`}>Sizes</h5>
+                                                <div className="flex space-x-1">
+                                                    {sizes.map((size) => {
+                                                        return (
+                                                            <div className={``} key={product.id + size}>
+                                                                <label
+                                                                    htmlFor={size}
+                                                                    className={`text-white text-sm p-1 px-2 ${
+                                                                        selectedSize === size
+                                                                            ? "bg-black"
+                                                                            : "bg-black/50"
+                                                                    }`}
+                                                                >
+                                                                    {size}
+                                                                </label>
+                                                                <input
+                                                                    type="radio"
+                                                                    name="size"
+                                                                    id={size}
+                                                                    value={size}
+                                                                    required={sizes && true}
+                                                                    checked={size === selectedSize}
+                                                                    onChange={handleSizeChange}
+                                                                    className="hidden"
+                                                                />
+                                                            </div>
+                                                        );
+                                                    })}
+                                                </div>
                                             </div>
                                         )}
 
                                         {/* quantity */}
                                         <div className={``}>
                                             <h5>Quantity</h5>
-                                            <div>
-                                                <span className={``} onClick={() => handleQuantityChange(quantity - 1)}>
+                                            <div className="flex items-center space-x-2 border rounded-xl">
+                                                <button
+                                                    className={``}
+                                                    onClick={() => handleQuantityChange(quantity - 1)}
+                                                >
                                                     {" "}
                                                     <FiMinus />{" "}
-                                                </span>
+                                                </button>
                                                 <input
                                                     type="text"
                                                     value={Number.isNaN(quantity) ? 1 : quantity} // if user clear quatity return 1 instead
                                                     onChange={(e) => handleQuantityChange(e.target.value)}
                                                 />
-                                                <span className={``} onClick={() => handleQuantityChange(quantity + 1)}>
+                                                <button
+                                                    className={``}
+                                                    onClick={() => handleQuantityChange(quantity + 1)}
+                                                >
                                                     {" "}
                                                     <FiPlus />{" "}
-                                                </span>
+                                                </button>
                                             </div>
                                         </div>
                                         {/* submit button */}
