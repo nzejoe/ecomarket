@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useCallback, useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 // icons
@@ -25,9 +24,9 @@ const ProductDetailPage = ({ params }) => {
     const [isPurchased, setIsPurchased] = useState(false);
     const [reviews, setReview] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [colors, setColors] = useState(null);
-    const [sizes, setSizes] = useState(null);
-    const [brand, setBrand] = useState(null);
+    const [colors, setColors] = useState([]);
+    const [sizes, setSizes] = useState([]);
+    const [brand, setBrand] = useState([]);
 
     // ADD TO CART
     const [selectedColor, setSelectedColor] = useState(null);
@@ -45,7 +44,6 @@ const ProductDetailPage = ({ params }) => {
 
     const { slug } = params;
 
-    console.log("slug", slug);
     const dispatch = useDispatch();
 
     // TAB TOGGLER
@@ -196,7 +194,7 @@ const ProductDetailPage = ({ params }) => {
     return (
         <section className={`section`}>
             <div className="section__wrapper">
-                {loading && <LoadingSpinner />}
+                {loading && <LoadingSpinner isLoading={true} color="text-primary" />}
                 {product && !loading && (
                     <div>
                         <div className={`border-b`}>
@@ -223,14 +221,14 @@ const ProductDetailPage = ({ params }) => {
                             </div>
                             <div>
                                 <div className={``}>
-                                    <h5>{product.product_name}</h5>
-                                    {brand && <p>{brand}</p>}
-                                    <p className={``}>
+                                    <h5 className="text-xl font-medium mb-1">{product.product_name}</h5>
+                                    {brand && <p className="text-xs text-black/75 mb-2">{brand}</p>}
+                                    <p className={`text-primary font-medium text-lg mb-2`}>
                                         $<span>{product.price}</span>
                                     </p>
-                                    <div className="review">
-                                        {/* <ReviewStar rating={product.rating} /> (
-                                        <span>{product.reviews.length} customer reviews</span>) */}
+                                    <div className="flex items-center space-x-10">
+                                        <ReviewStar rating={product.rating} />
+                                        <span className="text-xs">{`(${product.reviews.length} customer reviews)`}</span>
                                     </div>
                                 </div>
 
