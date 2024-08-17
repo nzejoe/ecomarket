@@ -194,7 +194,11 @@ const ProductDetailPage = ({ params }) => {
     return (
         <section className={`section`}>
             <div className="section__wrapper">
-                {loading && <LoadingSpinner isLoading={true} color="text-primary" />}
+                {loading && (
+                    <div className="w-full h-[calc(100vh-200px)] flex justify-center items-center">
+                        <LoadingSpinner isLoading={true} color="text-primary" />
+                    </div>
+                )}
                 {product && !loading && (
                     <div>
                         <div className={`border-b pb-20 xl:flex items-center space-x-10`}>
