@@ -10,6 +10,7 @@ import "./globals.css";
 
 import store from "@/common/store/reducer";
 import Navbar from "@/common/components/reuseable/Navbar";
+import Footer from "@/common/components/reuseable/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,6 +30,7 @@ export default function RootLayout({ children }) {
                     <Provider store={store}>
                         <Navbar />
                         {children}
+                        <Footer />
                     </Provider>
                 </QueryClientProvider>
             </body>
