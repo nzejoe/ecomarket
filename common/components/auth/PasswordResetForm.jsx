@@ -98,7 +98,7 @@ const PasswordResetForm = () => {
                 <div className="form__success" style={{ width: "40rem", margin: "auto" }}>
                     <h3>Password reset done.</h3>
                     <p>
-                        {` A link on how to set new password has been sent to your email address. ${(<br />)}
+                        {` A link on how to set new password has been sent to your email address.
                         Please endeavour to check your spam folder if you haven't seen the message.`}
                     </p>
                 </div>
