@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
+import { userLogin } from "@/common/store/user-slice";
 import useInput from "@/common/hooks/use-input";
 import Input from "../reuseable/Input";
 
@@ -38,6 +39,7 @@ const LoginForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         if (formIsValid) {
             const cartItems = JSON.parse(localStorage.getItem("safekart_cartItem"));
             const data = {

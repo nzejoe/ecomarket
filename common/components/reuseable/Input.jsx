@@ -1,12 +1,13 @@
 import React from "react";
 //style
-import styles from "../../modules/Input.modules.css";
+import styles from "../../modules/Input.module.css";
 
-const Input = ({ type, name, placeholder, label, value, onChange, onBlur, hasError, errorMsg, className }) => {
+const Input = ({ type, name, placeholder, label, value, onChange, onBlur, hasError, errorMsg, className, ...rest }) => {
     return (
         <div className={`${className}`}>
             <div className={styles.form__group}>
                 <input
+                    {...rest}
                     type={type}
                     placeholder={placeholder}
                     id={name}
