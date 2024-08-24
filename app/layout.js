@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
+import Script from "next/script";
 import axios from "axios";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from "react-redux";
@@ -47,6 +48,10 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
             <body className={inter.className}>
+                <Script
+                    src="https://www.paypal.com/sdk/js?client-id=AakvuJqO7zOhSNr6to36FyjW3fij4WZ70_a-9nryU-ngujsi7JDNAo9D_pk2cicSeM6lKOX-i0b6a_TE"
+                    strategy="afterInteractive"
+                />
                 <QueryClientProvider client={queryClient}>
                     <Provider store={store}>
                         <Navbar />
