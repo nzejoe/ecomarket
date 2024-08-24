@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 const AuthPage = () => {
     const router = useRouter();
-    router.replace("/auth/login");
+    router.replace("/accounts/login");
     return <Suspense fallback={<div>Loading...</div>} />;
 };
 

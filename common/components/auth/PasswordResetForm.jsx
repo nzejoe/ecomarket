@@ -89,7 +89,7 @@ const PasswordResetForm = () => {
                             </button>
                         </div>
                         <p>
-                            Already have an account? <Link href="/authh/login/">Log in</Link>
+                            Already have an account? <Link href="/accounts/login/">Log in</Link>
                         </p>
                     </form>
                 </div>

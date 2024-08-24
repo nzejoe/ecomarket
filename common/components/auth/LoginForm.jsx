@@ -121,10 +121,10 @@ const LoginForm = () => {
                         <span>Log in</span>
                     </button>
                     <p>
-                        Need an account? <Link href="/auth/signup">Register</Link>
+                        Need an account? <Link href="/accounts/signup">Register</Link>
                     </p>
                     <p>
-                        Forgot password? <Link href="/auth/password_reset">Reset password</Link>
+                        Forgot password? <Link href="/accounts/password_reset">Reset password</Link>
                     </p>
                 </div>
             </form>

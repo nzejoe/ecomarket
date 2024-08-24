@@ -106,7 +106,7 @@ const SignupForm = () => {
 
                     clearTimeout(timer);
                     timer = setTimeout(() => {
-                        router.push("/auth/login");
+                        router.push("/accounts/login");
                     }, 5000);
                 }
             } else {
@@ -204,7 +204,7 @@ const SignupForm = () => {
                         <span> Signup</span>
                     </button>
                     <p>
-                        Already have an account? <Link href="/auth/login/">Log in</Link>
+                        Already have an account? <Link href="/accounts/login/">Log in</Link>
                     </p>
                 </div>
             </form>
