@@ -15,7 +15,6 @@ import { getTotalAmount } from "@/common/helpers/utils";
 import styles from "@/common/modules/CartPage.module.css";
 
 const CartsPage = () => {
-    document.title = "Cart | SafeKart";
     const { authUser } = useSelector((state) => state.users);
     const { cartList, refresh } = useSelector((state) => state.carts);
 
