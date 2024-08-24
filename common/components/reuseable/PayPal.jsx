@@ -73,7 +73,7 @@ const PayPal = ({ totalAmount, tax, grandTotal }) => {
                                     });
                                     if (response.status === 200) {
                                         dispatch(cartActions.refreshCart());
-                                        router.replace("/carts/order_confirmed/");
+                                        router.replace("/carts/order_confirmed");
                                         console.log("data send");
                                     }
                                 } catch (error) {
