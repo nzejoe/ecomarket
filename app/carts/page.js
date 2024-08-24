@@ -31,12 +31,6 @@ const CartsPage = () => {
         dispatch(cartActions.getGuestCartList());
     }, [dispatch, authUser, refresh]);
 
-    const handleCheckout = () => {
-        if (!authUser) {
-            dispatch(userActions.setLoginRedirect("/checkout/"));
-        }
-    };
-
     return (
         <section className={`section `}>
             <div className={`section__wrapper ${styles.cart__page}`}>
@@ -67,9 +61,7 @@ const CartsPage = () => {
                                 </div>
                             </div>
                             <div className={styles.btn__checkout}>
-                                <Link href="/checkout/" onClick={handleCheckout}>
-                                    checkout
-                                </Link>
+                                <Link href="/carts/checkout/">checkout</Link>
                             </div>
                         </div>
                     )}
