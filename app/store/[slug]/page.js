@@ -7,7 +7,7 @@ import axios from "axios";
 import { FiPlus, FiMinus } from "react-icons/fi";
 
 // state
-// import { addToCart, actions as cartActions } from "../../store/cart-slice";
+import { addToCart, actions as cartActions } from "@/common/store/cart-slice";
 
 import UserReview from "@/common/components/reviews/UserReview";
 // ui
