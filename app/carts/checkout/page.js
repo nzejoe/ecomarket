@@ -5,8 +5,9 @@ import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { actions as userActions } from "@/common/store/user-slice";
 import Input from "@/common/components/reuseable/Input";
+import LoadingSpinner from "@/common/components/reuseable/LoadingSpinner";
 // store
-// import { actions as orderActions } from "@/common/store/order-slice";
+import { actions as orderActions } from "@/common/store/order-slice";
 // custom hook
 import useInput from "@/common/hooks/use-input";
 
@@ -19,6 +20,7 @@ const CheckoutPage = () => {
     const router = useRouter();
     const [gender, setGender] = useState("male");
     const [formHasError, setFormHasError] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const validate = (value) => {
         return value.length > 0;
@@ -134,25 +136,32 @@ const CheckoutPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (formIsValid) {
-            const data = {
-                first_name: firstName,
-                middle_name: middleName,
-                last_name: lastName,
-                gender,
-                email: email.toLocaleLowerCase(),
-                phone,
-                address_1,
-                address_2,
-                city,
-                state,
-                country,
-            };
+        setIsLoading(true);
 
-            // dispatch(orderActions.saveOrder(data));
-            router.replace("/carts/place_order");
-        } else {
-            setFormHasError(true);
+        try {
+            if (formIsValid) {
+                const data = {
+                    first_name: firstName,
+                    middle_name: middleName,
+                    last_name: lastName,
+                    gender,
+                    email: email.toLocaleLowerCase(),
+                    phone,
+                    address_1,
+                    address_2,
+                    city,
+                    state,
+                    country,
+                };
+
+                dispatch(orderActions.saveOrder(data));
+                router.replace("/carts/place_order");
+            } else {
+                setFormHasError(true);
+            }
+        } catch (error) {
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -314,7 +323,14 @@ const CheckoutPage = () => {
                                 />
                             </div>
                             <div className={styles.btn__proceed}>
-                                <button type="submit">Proceed to payment</button>
+                                <button
+                                    type="submit"
+                                    className="w-full rounded flex items-center justify-center disabled:opacity-50 mb-4"
+                                    disabled={isLoading}
+                                >
+                                    <LoadingSpinner isLoading={isLoading} />
+                                    Proceed to payment
+                                </button>
                             </div>
                         </form>
                     </div>
