@@ -5,7 +5,7 @@ import styles from "../../modules/Input.module.css";
 const Input = ({ type, name, placeholder, label, value, onChange, onBlur, hasError, errorMsg, className, ...rest }) => {
     return (
         <div className={`${className}`}>
-            <div className={styles.form__group}>
+            <div className={`${styles.form__group} mb-3`}>
                 <input
                     {...rest}
                     type={type}
@@ -17,7 +17,7 @@ const Input = ({ type, name, placeholder, label, value, onChange, onBlur, hasErr
                 />
                 <label htmlFor={name}>{label}</label>
             </div>
-            {hasError && <p className={styles.error}>{errorMsg}</p>}
+            {hasError && <p className={`${styles.error} h-5`}>{errorMsg}</p>}
         </div>
     );
 };

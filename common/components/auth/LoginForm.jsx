@@ -7,8 +7,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "@/common/store/user-slice";
 import useInput from "@/common/hooks/use-input";
 import Input from "../reuseable/Input";
+import LoadingSpinner from "../reuseable/LoadingSpinner";
 
 const LoginForm = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const [newError, setNewError] = useState(false);
 
     const { error, loginRedirect } = useSelector((state) => state.users);
@@ -39,24 +41,29 @@ const LoginForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
+        try {
+            if (formIsValid) {
+                const cartItems = JSON.parse(localStorage.getItem("safekart_cartItem"));
+                const data = {
+                    username: email,
+                    password: password,
+                    cartItems: JSON.stringify(cartItems),
+                };
 
-        if (formIsValid) {
-            const cartItems = JSON.parse(localStorage.getItem("safekart_cartItem"));
-            const data = {
-                username: email,
-                password: password,
-                cartItems: JSON.stringify(cartItems),
-            };
+                const resultPromise = await dispatch(userLogin(data));
 
-            const resultPromise = await dispatch(userLogin(data));
-
-            if (userLogin.fulfilled.match(resultPromise)) {
-                if (loginRedirect) {
-                    router.replace(loginRedirect);
-                } else {
-                    router.replace("/");
+                if (userLogin.fulfilled.match(resultPromise)) {
+                    if (loginRedirect) {
+                        router.replace(loginRedirect);
+                    } else {
+                        router.replace("/");
+                    }
                 }
             }
+        } catch (error) {
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -78,7 +85,7 @@ const LoginForm = () => {
                 <div className="message">
                     {newError && (
                         <p className="form__error">
-                            {error.non_field_errors[0]} {/* error msg from database */}
+                            {error?.non_field_errors[0]} {/* error msg from database */}
                         </p>
                     )}
                 </div>
@@ -105,7 +112,14 @@ const LoginForm = () => {
                     errorMsg="Please enter a password!"
                 />
                 <div className="form__actions">
-                    <button type="submit">Log in</button>
+                    <button
+                        type="submit"
+                        className="w-full rounded flex items-center justify-center disabled:opacity-50 mb-4"
+                        disabled={isLoading}
+                    >
+                        <LoadingSpinner isLoading={isLoading} />
+                        <span>Log in</span>
+                    </button>
                     <p>
                         Need an account? <Link href="/accounts/register/">Register</Link>
                     </p>

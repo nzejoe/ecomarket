@@ -20,6 +20,8 @@ const Navbar = () => {
     const { authUser } = useSelector((state) => state.users);
     const { cartList, refresh } = useSelector((state) => state.carts);
 
+    console.log("authUser", authUser);
+
     const totalCartItems = getTotalCart(cartList);
 
     const navItems = [
