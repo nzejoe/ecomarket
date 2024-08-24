@@ -5,11 +5,14 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import Input from "../reuseable/Input";
 import useInput from "@/common/hooks/use-input";
+import LoadingSpinner from "../reuseable/LoadingSpinner";
+import { userPasswordReset } from "@/common/store/user-slice";
 
 const PasswordResetForm = () => {
     const { error } = useSelector((state) => state.users);
     const [formHasError, setFormHasError] = useState(false);
     const [success, setSuccess] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -26,14 +29,21 @@ const PasswordResetForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (formIsValid) {
-            const data = {
-                email: value.toLowerCase(),
-            };
-            const resultPromise = await dispatch(userPasswordReset(data));
-            if (userPasswordReset.fulfilled.match(resultPromise)) {
-                setSuccess(true);
+        setIsLoading(true);
+
+        try {
+            if (formIsValid) {
+                const data = {
+                    email: value.toLowerCase(),
+                };
+                const resultPromise = await dispatch(userPasswordReset(data));
+                if (userPasswordReset.fulfilled.match(resultPromise)) {
+                    setSuccess(true);
+                }
             }
+        } catch (error) {
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -69,7 +79,14 @@ const PasswordResetForm = () => {
                             errorMsg={value ? "Email is not valid!" : "Email cannot be empty!"}
                         />
                         <div className="form__actions">
-                            <button type="submit">reset password</button>
+                            <button
+                                type="submit"
+                                className="w-full rounded flex items-center justify-center disabled:opacity-50 mb-4"
+                                disabled={isLoading}
+                            >
+                                <LoadingSpinner isLoading={isLoading} />
+                                reset password
+                            </button>
                         </div>
                         <p>
                             Already have an account? <Link href="/authh/login/">Log in</Link>
@@ -81,8 +98,8 @@ const PasswordResetForm = () => {
                 <div className="form__success" style={{ width: "40rem", margin: "auto" }}>
                     <h3>Password reset done.</h3>
                     <p>
-                        A link on how to set new password has been sent to your email address. <br />
-                        Please endeavour to check your spam folder if you haven't seen the message.
+                        {` A link on how to set new password has been sent to your email address. ${(<br />)}
+                        Please endeavour to check your spam folder if you haven't seen the message.`}
                     </p>
                 </div>
             )}
