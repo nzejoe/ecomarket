@@ -17,11 +17,13 @@ import { getTotalCart } from "@/common/helpers/utils";
 const Navbar = () => {
     const [toggle, setToggle] = useState(false);
 
+    const dispatch = useDispatch();
+
     const { authUser } = useSelector((state) => state.users);
     const { cartList, refresh } = useSelector((state) => state.carts);
 
-    console.log("authUser", authUser);
-
+    // get user token
+    const token = authUser && authUser.token;
     const totalCartItems = getTotalCart(cartList);
 
     const navItems = [
@@ -49,8 +51,16 @@ const Navbar = () => {
     const handleLogout = (e) => {
         dispatch(userLogout(token));
         dispatch(userActions.setLoginRedirect(null));
-        setShowLinks(false);
     };
+
+    useEffect(() => {
+        if (token) {
+            dispatch(getCartList(token));
+            return;
+        } else {
+            dispatch(cartActions.getGuestCartList());
+        }
+    }, [dispatch, token, refresh]);
 
     useEffect(() => {
         function runSetLink(e) {
