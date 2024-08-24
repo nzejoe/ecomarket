@@ -126,14 +126,14 @@ const CartItem = ({ item, styles }) => {
                         </p>
                     </div>
                 </div>
-                <div className={styles.cart__item_center}>
-                    <button onClick={decrementItem} className={styles.btn__left}>
-                        <FiMinus className={styles.icon} />
+                <div className={`flex items-center space-x-3 border rounded-[100px] text-lg py-3 px-4`}>
+                    <button onClick={decrementItem} className={``}>
+                        <FiMinus className={`text-2xl`} />
                     </button>
                     <span>{item.quantity}</span>
-                    <button onClick={incrementItem} className={styles.btn__right}>
+                    <button onClick={incrementItem} className={``}>
                         {" "}
-                        <FiPlus className={styles.icon} />
+                        <FiPlus className={`text-2xl`} />
                     </button>
                 </div>
 
