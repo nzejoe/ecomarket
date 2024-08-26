@@ -48,12 +48,12 @@ const OrdersPage = () => {
             ) : (
                 <div className="section__wrapper">
                     <h2 className="text-3xl font-semibold mb-10 capitalize">order history</h2>
-                    <div>
+                    <div className="border rounded-xl">
                         {orders ? (
                             <div className="overflow-x-auto">
                                 <table className="table table-zebra">
-                                    <thead>
-                                        <tr>
+                                    <thead className="">
+                                        <tr className="[&>th]:border-b [&>th]:bg-primary-light">
                                             <th>#</th>
                                             <th>Order number</th>
                                             <th>Date</th>
