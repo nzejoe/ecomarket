@@ -9,36 +9,6 @@
     margin-bottom: 2rem;
 }
 
-.orders table {
-    width: auto;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-.orders thead {
-    width: 100%;
-    position: sticky;
-    left: 0;
-    background-color: #fff;
-}
-
-.orders th {
-    padding: 3rem 0;
-    font-size: 1.3rem;
-    border-bottom: 3px solid var(--primary-color);
-}
-
-.orders td {
-    min-width: 12rem;
-    padding: 2rem 0.5rem;
-    font-size: 1.3rem;
-    cursor: pointer;
-}
-
-.orders tbody tr:hover {
-    background-color: var(--dark-trans-4);
-}
-
 .orders .status,
 .orders .quantity {
     text-align: center;
