@@ -15,6 +15,19 @@ const DashboardOrders = () => {
         sendOrderUpdate(orderUpdate);
     };
 
+    const getColor = (status) => {
+        switch (status) {
+            case "pending":
+                return "#FFD700";
+            case "delivered":
+                return "#00FF00";
+            case "out for delivery":
+                return "#6c91c2";
+            default:
+                return "#000000";
+        }
+    };
+
     useEffect(() => {
         getOrders();
         // eslint-disable-next-line
@@ -55,7 +68,10 @@ const DashboardOrders = () => {
                                         <td className={styles.quantity}>{order.quantity}</td>
                                         <td>{`$${order.total_amount}`}</td>
                                         <td className="min-w-[150px]">{getOrderDateTime(order.order.updated)}</td>
-                                        <td className={`${styles.status} ${order.status}`}>
+                                        <td
+                                            className={`${styles.status} ${order.status}`}
+                                            style={{ color: getColor(order.status) }}
+                                        >
                                             {" "}
                                             <span>{order.status}</span>{" "}
                                         </td>

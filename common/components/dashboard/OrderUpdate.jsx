@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styles from "@/common/modules/DashboardOrders.module.css";
 
 const OrderUpdate = ({ getUpdate, order }) => {
     const [isUpdate, setIsUpdate] = useState(false);
