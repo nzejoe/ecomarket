@@ -20,7 +20,6 @@
     border-bottom: 1px solid var(--dark-trans-2);
     margin: 1rem 0;
     padding: 0.5rem 1rem;
-    font-size: 1.5rem;
 }
 
 .review__form form input:focus {
@@ -29,11 +28,9 @@
 
 .review__form form textarea {
     width: 100%;
-    min-width: 32rem;
     max-width: 50rem;
     height: 20rem;
     outline: none;
-    font-size: 1.5rem;
     border: 1px solid var(--dark-trans-2);
     border-radius: 1rem;
     padding: 0.5rem 1rem;
@@ -52,7 +49,6 @@
 
 .btn__container button {
     width: 100%;
-    font-size: 1.5rem;
     padding: 2rem 0 1rem 0;
     background-color: var(--primary-color);
     color: #fff;
@@ -85,7 +81,6 @@
     color: var(--dark-color-3);
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 1em;
 }
 
 .btn__safe:hover {
@@ -96,30 +91,12 @@
     background-color: #ca252560;
 }
 
-.review__btn_container h5 {
-    font-size: 1.2em;
-}
-
-.review {
-    font-size: 1rem;
-}
-
-.review h4 {
-    font-size: 1.5em;
-}
-
 .time__stamp {
     float: right;
-    font-size: 1.5em;
     color: var(--dark-trans);
-}
-
-.review h5 {
-    font-size: 1.2em;
 }
 
 .review p {
     color: var(--dark-color);
-    font-size: 1.3em;
     width: 100%;
 }
