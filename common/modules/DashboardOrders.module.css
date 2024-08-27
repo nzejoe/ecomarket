@@ -1,0 +1,64 @@
+.orders {
+    width: 100%;
+    box-shadow: var(--light-shadow);
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.orders h2 {
+    margin-bottom: 2rem;
+}
+
+.orders table {
+    width: auto;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.orders thead {
+    width: 100%;
+    position: sticky;
+    left: 0;
+    background-color: #fff;
+}
+
+.orders th {
+    padding: 3rem 0;
+    font-size: 1.3rem;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.orders td {
+    min-width: 12rem;
+    padding: 2rem 0.5rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.orders tbody tr:hover {
+    background-color: var(--dark-trans-4);
+}
+
+.orders .status,
+.orders .quantity {
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.btn__update {
+    background-color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.btn__update:hover {
+    background-color: var(--primary-color-dark);
+}
+
+@media screen and (max-width: 1300px) {
+    .orders {
+        overflow-x: scroll;
+    }
+}

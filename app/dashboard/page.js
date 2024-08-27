@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useContext, useEffect } from "react";
-import SalesProvider from "@/common/context/sales-context";
+import React, { useEffect } from "react";
 import { useSales } from "@/common/context/sales-context";
 
 import TopSellingChart from "@/common/components/dashboard/TopSellingChart";
@@ -25,7 +24,7 @@ const DashboardPage = () => {
     return (
         <>
             <div className={`dashboard ${styles.main}`}>
-                <div>
+                <div className="max-w-md">
                     <TopSellingChart />
                 </div>
                 <div className={`${styles.order__cards}`}>
