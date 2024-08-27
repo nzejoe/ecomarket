@@ -122,6 +122,13 @@ const Navbar = () => {
                                     {authUser ? (
                                         <div className={``}>
                                             <Link
+                                                href="/orders"
+                                                className="block  mb-3 xl:hover:bg-primary xl:hover:text-white xl:py-2 xl:mb-0"
+                                                onClick={() => setToggle(false)}
+                                            >
+                                                My orders
+                                            </Link>{" "}
+                                            <Link
                                                 href="/accounts/password_change"
                                                 className="block  mb-3 xl:hover:bg-primary xl:hover:text-white xl:py-2 xl:mb-0"
                                                 onClick={() => setToggle(false)}
