@@ -1,13 +1,12 @@
-"use client";
-
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import UserReview from "./UserReview";
 import ReviewEditForm from "./ReviewEditForm";
 import axios from "axios";
-
+// ui
 import LoadingSpinner from "../reuseable/LoadingSpinner";
+// style
 
 const MyReview = ({ review, handleRefresh }) => {
     const { token } = useSelector((state) => state.users);

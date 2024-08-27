@@ -377,7 +377,7 @@ const ProductDetailPage = ({ params }) => {
                             <p>{product && product.description}</p>
                         </div>
                         {/* REVIEW CONTAINER */}
-                        <div className={`${toggle === 2 ? `` : "hidden"}`}>
+                        <div className={`${toggle === 2 ? `` : "hidden"} max-w-[500px]`}>
                             {/* review form  */}
                             {!alreadyReviewed && isPurchased && (
                                 <ReviewForm productId={product.id} handlePageRefresh={handlePageRefresh} />
