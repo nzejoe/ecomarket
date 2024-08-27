@@ -40,7 +40,7 @@ const Navbar = () => {
         {
             id: 3,
             label: "Dashboard",
-            link: "#",
+            link: "/dashboard",
         },
     ];
 
