@@ -6,18 +6,23 @@ import Cookies from "js-cookie";
 import RatingStar from "./RatingStar";
 // style
 import "../../styles/reviews.css";
+import LoadingSpinner from "../reuseable/LoadingSpinner";
 
 const ReviewForm = ({ productId, handlePageRefresh }) => {
     const { token } = useSelector((state) => state.users);
+    const [formhasError, setFormHasError] = useState(false);
     const [rating, setRating] = useState(null);
+    const [isSaving, setIsSaving] = useState(false);
+
     const subjectRef = useRef();
     const reviewRef = useRef();
-    const [formhasError, setFormHasError] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (rating && token) {
+            setIsSaving(true);
+
             const data = {
                 product: productId,
                 rating,
@@ -39,7 +44,10 @@ const ReviewForm = ({ productId, handlePageRefresh }) => {
                 if (response.status === 200) {
                     handlePageRefresh();
                 }
-            } catch (error) {}
+            } catch (error) {
+            } finally {
+                setIsSaving(false);
+            }
         } else {
             setFormHasError(true);
         }
@@ -61,7 +69,14 @@ const ReviewForm = ({ productId, handlePageRefresh }) => {
                 <input type="text" placeholder="Enter subject" ref={subjectRef} />
                 <textarea name="" id="" placeholder="Write a short note about this product." ref={reviewRef}></textarea>
                 <div className={`btn__container`}>
-                    <button type="submit">Submit</button>
+                    <button
+                        type="submit"
+                        className="w-full rounded flex items-center justify-center disabled:opacity-50 mb-4"
+                        disabled={isSaving}
+                    >
+                        <LoadingSpinner isLoading={isSaving} />
+                        <span> Save</span>
+                    </button>
                 </div>
             </form>
         </div>

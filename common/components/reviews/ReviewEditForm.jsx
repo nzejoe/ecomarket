@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Cookies from "js-cookie";
+import LoadingSpinner from "../reuseable/LoadingSpinner";
 
 import RatingStar from "./RatingStar";
 // style
@@ -14,6 +15,7 @@ const ReviewEditForm = ({ userReview, handlePageRefresh, handleEdit }) => {
     const [subject, setSubject] = useState(userReview.subject);
     const [review, setReview] = useState(userReview.review);
     const [formHasError, setFormHasError] = useState(false);
+    const [isSaving, setIsSaving] = useState(false);
 
     const handleRateChange = (e) => {
         setRating(e.target.value);
@@ -21,6 +23,10 @@ const ReviewEditForm = ({ userReview, handlePageRefresh, handleEdit }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!token) return;
+
+        setIsSaving(true);
 
         if (rating && token) {
             const data = {
@@ -47,6 +53,8 @@ const ReviewEditForm = ({ userReview, handlePageRefresh, handleEdit }) => {
                 }
             } catch (error) {
                 console.log({ ...error });
+            } finally {
+                setIsSaving(false);
             }
         } else {
             setFormHasError(true);
@@ -76,7 +84,14 @@ const ReviewEditForm = ({ userReview, handlePageRefresh, handleEdit }) => {
                     onChange={(e) => setReview(e.target.value)}
                 ></textarea>
                 <div className={`${styles.btn__container} w-full`}>
-                    <button type="submit">Save</button>
+                    <button
+                        type="submit"
+                        className="w-full rounded flex items-center justify-center disabled:opacity-50 mb-4"
+                        disabled={isSaving}
+                    >
+                        <LoadingSpinner isLoading={isSaving} />
+                        <span> Save</span>
+                    </button>
                 </div>
             </form>
         </div>

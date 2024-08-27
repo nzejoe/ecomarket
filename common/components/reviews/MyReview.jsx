@@ -6,6 +6,7 @@ import ReviewEditForm from "./ReviewEditForm";
 import axios from "axios";
 // ui
 import LoadingSpinner from "../reuseable/LoadingSpinner";
+import { set } from "react-hook-form";
 // style
 
 const MyReview = ({ review, handleRefresh }) => {
@@ -21,6 +22,8 @@ const MyReview = ({ review, handleRefresh }) => {
 
     useEffect(() => {
         const sendDeleteRequest = async () => {
+            if (!token) return;
+
             try {
                 const response = await axios({
                     url: `/products/delete_review/${review.id}/`,
@@ -31,13 +34,14 @@ const MyReview = ({ review, handleRefresh }) => {
                 });
 
                 if (response.status === 200) {
-                    setSending(false);
                     setConfirmDelete(false);
                     setRemove(false);
                     handleRefresh();
                 }
             } catch (error) {
                 console.log({ ...error });
+            } finally {
+                setSending(false);
             }
         };
 
@@ -57,7 +61,7 @@ const MyReview = ({ review, handleRefresh }) => {
             ) : (
                 <ReviewEditForm userReview={review} handlePageRefresh={handleRefresh} handleEdit={handleEdit} />
             )}
-            {sending && <LoadingSpinner isLoading={true} color="text-primary" />}
+
             {!sending &&
                 !remove &&
                 !edit && ( // if remove button not yet pressed
@@ -70,18 +74,21 @@ const MyReview = ({ review, handleRefresh }) => {
                         </button>
                     </div>
                 )}
-            {remove &&
-                !sending && ( // if remove button has been pressed
-                    <div className={`review__btn_container`}>
-                        <h5>Are you sure you want to delete your review?</h5>
-                        <button className={`btn__danger`} onClick={setConfirmDelete}>
-                            Yes
-                        </button>
-                        <button className={`btn__safe`} onClick={() => setRemove(false)}>
-                            Cancel
-                        </button>
-                    </div>
-                )}
+            {remove && (
+                <div className={`review__btn_container`}>
+                    <h5>Are you sure you want to delete your review?</h5>
+                    <button className={`btn__danger disabled:opacity-60`} onClick={setConfirmDelete} disabled={sending}>
+                        Yes
+                    </button>
+                    <button
+                        className={`btn__safe disabled:opacity-60`}
+                        onClick={() => setRemove(false)}
+                        disabled={sending}
+                    >
+                        Cancel
+                    </button>
+                </div>
+            )}
         </div>
     );
 };

@@ -109,7 +109,7 @@ const ProductDetailPage = ({ params }) => {
 
     // set user review
     useEffect(() => {
-        if (alreadyReviewed) {
+        if (alreadyReviewed && authUser && reviews) {
             const username = authUser && authUser.username;
             const review = reviews.find((review) => review.user === username);
             setMyReview(review);
