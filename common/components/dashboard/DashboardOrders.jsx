@@ -1,6 +1,7 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import { useSales } from "@/common/context/sales-context";
+import OrderUpdate from "./OrderUpdate";
 // utils
 import { getOrderDateTime } from "@/common/helpers/utils";
 // style
@@ -43,10 +44,10 @@ const DashboardOrders = () => {
                                 return (
                                     <tr key={order.id}>
                                         <td>{order.order.order_number}</td>
-                                        <td className="w-[200px]">
+                                        <td className="min-w-[200px]">
                                             {order.order.first_name} {order.order.last_name}
                                         </td>
-                                        <td className="w-[250px]">{order.product_name}</td>
+                                        <td className="min-w-[250px]">{order.product_name}</td>
                                         <td className="min-w-[250px]">
                                             {order.order.address_1}, {order.order.city} {order.order.state}{" "}
                                             {order.order.country}
@@ -58,8 +59,8 @@ const DashboardOrders = () => {
                                             {" "}
                                             <span>{order.status}</span>{" "}
                                         </td>
-                                        <td>
-                                            <div></div>
+                                        <td className="min-w-[180px]">
+                                            <OrderUpdate getUpdate={getUpdate} order={order} />
                                         </td>
                                     </tr>
                                 );
