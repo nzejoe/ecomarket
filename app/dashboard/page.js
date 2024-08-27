@@ -1,11 +1,15 @@
 "use client";
 
 import React, { useEffect } from "react";
+import dynamic from "next/dynamic";
 import { useDispatch, useSelector } from "react-redux";
 import { actions as userActions } from "@/common/store/user-slice";
 import { useSales } from "@/common/context/sales-context";
 
-import TopSellingChart from "@/common/components/dashboard/TopSellingChart";
+// import TopSellingChart from "@/common/components/dashboard/TopSellingChart";
+const TopSellingChart = dynamic(() => import("@/common/components/dashboard/TopSellingChart"), {
+    ssr: false, // Optional: Disable server-side rendering if the component relies on client-side only APIs
+});
 import DashboardOrders from "@/common/components/dashboard/DashboardOrders";
 import LoadingSpinner from "@/common/components/reuseable/LoadingSpinner";
 // style
