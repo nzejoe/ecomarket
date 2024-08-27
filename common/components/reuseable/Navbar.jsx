@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useSelector, useDispatch } from "react-redux";
 
 // redux
@@ -17,6 +18,8 @@ import { getTotalCart } from "@/common/helpers/utils";
 const Navbar = () => {
     const [toggle, setToggle] = useState(false);
 
+    const pathname = usePathname();
+
     const dispatch = useDispatch();
 
     const { authUser } = useSelector((state) => state.users);
@@ -28,17 +31,17 @@ const Navbar = () => {
 
     const navItems = [
         {
-            id: 1,
+            id: "home",
             label: "Home",
             link: "/",
         },
         {
-            id: 2,
+            id: "store",
             label: "Store",
             link: "/store",
         },
         {
-            id: 3,
+            id: "dashboard",
             label: "Dashboard",
             link: "/dashboard",
         },
@@ -75,7 +78,7 @@ const Navbar = () => {
     }, []);
 
     return (
-        <div className="w-screen bg-white fixed top-0 left-0 z-5">
+        <div className="w-screen bg-white fixed top-0 left-0 z-5 shadow-md">
             <nav className="max-w-next-max mx-auto w-full flex items-center justify-between px-5 py-3 xl:grid grid-cols-3">
                 <div className="col-span-1">
                     <h5>EcoMarket</h5>
@@ -91,8 +94,17 @@ const Navbar = () => {
                     >
                         <ul className="text-center mb-3 xl:flex xl:space-x-10 xl:text-left xl:mb-0">
                             {navItems.map((item, idx) => (
-                                <li key={item.id}>
-                                    <Link href={item.link}>{item.label}</Link>
+                                <li key={item.id} className={``}>
+                                    <Link
+                                        href={item.link}
+                                        className={`hover:border-b border-primary ${
+                                            pathname.includes(item.id) || pathname.endsWith(item.link)
+                                                ? "xl:border-b-2 "
+                                                : ""
+                                        }`}
+                                    >
+                                        {item.label}
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
